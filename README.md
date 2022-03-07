@@ -37,13 +37,19 @@ cmake .. && make
 
    ```
    cd ./lidar2lidar/auto_calib/
-   ./bin/run_lidar2lidar point_cloud_path initial_extrinsic output_dir
+   ./bin/run_lidar2lidar  ./test_samples/real_world/2022-02-15-17-31-37-050/lidar_cloud_path.txt   ./test_samples/real_world/2022-02-15-17-31-37-050/initial_extrinsic.txt  outputs/2022-02-15-17-31-37-050
+   ./bin/run_lidar2lidar  ./test_samples/real_world/2022-02-15-17-36-04-449/lidar_cloud_path.txt   ./test_samples/real_world/2022-02-15-17-36-04-449/initial_extrinsic.txt  outputs/2022-02-15-17-36-04-449
+   ./bin/run_lidar2lidar  ./test_samples/real_world/2022-02-15-17-45-07-750/lidar_cloud_path.txt   ./test_samples/real_world/2022-02-15-17-45-07-750/initial_extrinsic.txt  outputs/2022-02-15-17-45-07-750
+   ./bin/run_lidar2lidar  ./test_samples/carla_data/004069/lidar_cloud_path.txt   ./test_samples/carla_data/004069/initial_extrinsic.txt  outputs/004069
+   ./bin/run_lidar2lidar  ./test_samples/carla_data/004553/lidar_cloud_path.txt   ./test_samples/carla_data/004553/initial_extrinsic.txt  outputs/004553
+   ./bin/run_lidar2lidar  ./test_samples/carla_data/005466/lidar_cloud_path.txt   ./test_samples/carla_data/005466/initial_extrinsic.txt  outputs/005466
    ```
 
 3. Calibration result:
 
-   <img src="./result/refine0.png" width="100%" height="100%" alt="Calibration result" div align=center />
-<!--    <img src="./result/refine1.png" width="100%" height="100%" alt="Calibration result" div align=center />
-   <img src="./result/refine4.png" width="100%" height="100%" alt="Calibration result" div align=center />
-   <img src="./result/refine8.png" width="100%" height="100%" alt="Calibration result" div align=center /> -->
-
+   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result1" div align=center />
+   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result2" div align=center />
+   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result3" div align=center />
+   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result1" div align=center />
+   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result2" div align=center />
+   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result3" div align=center />
