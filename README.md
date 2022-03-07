@@ -22,7 +22,7 @@ cmake .. && make
 
 ## Usage
 
-1. Three Input files: 
+1. Three input files: 
 
    `point_cloud_path initial_extrinsic output_dir`
 
@@ -47,9 +47,9 @@ cmake .. && make
 
 3. Calibration result:
 
-   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result1" div align=center />
-   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result2" div align=center />
-   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result3" div align=center />
-   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result1" div align=center />
-   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result2" div align=center />
-   <img src="./test_samples/results/real_world_31.png" width="10%" height="10%" alt="Real World Calibration result3" div align=center />
+   <img src="./test_samples/results/real_world_31.png" width="30%" height="30%" alt="Real World Calibration result1" div align=center />
+   <img src="./test_samples/results/real_world_36.png" width="30%" height="30%" alt="Real World Calibration result2" div align=center />
+   <img src="./test_samples/results/real_world_45.png" width="30%" height="30%" alt="Real World Calibration result3" div align=center />
+   <img src="./test_samples/results/unreal_world_4069.png" width="30%" height="30%" alt="Real World Calibration result1" div align=center />
+   <img src="./test_samples/results/unreal_world_4553.png" width="30%" height="30%" alt="Real World Calibration result2" div align=center />
+   <img src="./test_samples/results/unreal_world_5466.png" width="30%" height="30%" alt="Real World Calibration result3" div align=center />
