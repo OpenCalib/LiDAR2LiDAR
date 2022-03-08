@@ -59,3 +59,15 @@ Extration code(提取码): ctuk
    <img src="./test_samples/results/unreal_world_4069.png" width="30%" height="30%" alt="Real World Calibration result1" div align=center />
    <img src="./test_samples/results/unreal_world_4553.png" width="30%" height="30%" alt="Real World Calibration result2" div align=center />
    <img src="./test_samples/results/unreal_world_5466.png" width="30%" height="30%" alt="Real World Calibration result3" div align=center />
+
+## Citation
+This code is based on the research below:
+```
+@misc{2203.03182,
+Author = {Pengjin Wei and Guohang Yan and Yikang Li and Kun Fang and Wei Liu and Xinyu Cai and Jie Yang},
+Title = {CROON: Automatic Multi-LiDAR Calibration and Refinement Method in Road Scene},
+Year = {2022},
+Eprint = {arXiv:2203.03182},
+}
+   
+```
