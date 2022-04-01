@@ -3,6 +3,7 @@
 
 #include <eigen3/Eigen/Core>
 #include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Geometry>
 #include <iostream>
 inline double deg2rad(double degrees) { return degrees * M_PI / 180.0; }
 
@@ -14,51 +15,53 @@ public:
   static Eigen::Matrix4d Matrix4FloatToDouble(const Eigen::Matrix4f &matrix) {
     Eigen::Matrix4d ret = Eigen::Matrix4d::Identity();
     ret = matrix.cast<double>();
+    return ret;
   }
   static Eigen::Matrix4d GetDeltaT(const float var[6]) {
     Eigen::Matrix3d deltaR;
-    double R[3]=[var[0], var[1], var[2]];
-    double mat[9];
-    ceres::AngleAxisToRotationMatrix(R, mat);
-    deltaR << mat[0], mat[3], mat[6], mat[1], mat[4], mat[7], mat[2], mat[5],
-        mat[8];
+    deltaR = GetRotation(deg2rad(var[0]), deg2rad(var[1]), deg2rad(var[2]));
     Eigen::Matrix4d deltaT = Eigen::Matrix4d::Identity();
     deltaT.block<3, 3>(0, 0) = deltaR;
-    deltaT(0, 3) = t[0];
-    deltaT(1, 3) = t[1];
-    deltaT(2, 3) = t[2];
+    deltaT(0, 3) = var[3];;
+    deltaT(1, 3) = var[4];;
+    deltaT(2, 3) = var[5];;
     return deltaT;
   }
   static Eigen::Matrix4d GetMatrix(double x, double y, double z, double roll,
                                    double pitch, double yaw) {
     Eigen::Matrix4d ret = Eigen::Matrix4d::Identity();
-    Eigen::Vector3d translation = GetTranslation(x, y, z);
-    Eigen::Matrix3d rotation = GetRotation(roll, pitch, yaw);
-    ret.block<3, 1>(0, 3) = translation;
-    ret.block<3, 3>(0, 0) = rotation;
+    Eigen::Vector3d T = GetTranslation(x, y, z);
+    Eigen::Matrix3d R = GetRotation(roll, pitch, yaw);
+    ret.block<3, 1>(0, 3) = T;
+    ret.block<3, 3>(0, 0) = R;
     return ret;
   }
-  static Eigen::Matrix4d GetMatrix(const Eigen::Vector3d &translation,
-                                   const Eigen::Matrix3d &rotation) {
+  static Eigen::Matrix4d GetMatrix(const Eigen::Vector3d &T,
+                                   const Eigen::Matrix3d &R) {
     Eigen::Matrix4d ret = Eigen::Matrix4d::Identity();
-    ret.block<3, 1>(0, 3) = translation;
-    ret.block<3, 3>(0, 0) = rotation;
+    ret.block<3, 1>(0, 3) = T;
+    ret.block<3, 3>(0, 0) = R;
     return ret;
   }
   static Eigen::Vector3d GetTranslation(const Eigen::Matrix4d &matrix) {
-    return Eigen::Vector3d(matrix(0, 3), matrix(1, 3), matrix(2, 3));
+    Eigen::Vector3d T;
+    T << matrix(0, 3), matrix(1, 3), matrix(2, 3);
+    return T;
   }
   static Eigen::Vector3d GetTranslation(double x, double y, double z) {
-    return Eigen::Vector3d(x, y, z);
+    Eigen::Vector3d T;
+    T << x, y, z;
+    return T;
   }
   static Eigen::Matrix3d GetRotation(const Eigen::Matrix4d &matrix) {
-    return matrix.block<3, 3>(0, 0);
+    Eigen::Matrix3d R = matrix.block<3, 3>(0, 0);
+    return R;
   }
   static Eigen::Matrix3d GetRotation(double roll, double pitch, double yaw) {
     Eigen::Matrix3d rotation;
-    Eigen::AngleAxisd Rx(AngleAxisd(roll,Vector3d::UnitX()));
-    Eigen::AngleAxisd Ry(AngleAxisd(pitch,Vector3d::UnitY()));
-    Eigen::AngleAxisd Rz(AngleAxisd(yaw,Vector3d::UnitZ()));  
+    Eigen::AngleAxisd Rx(Eigen::AngleAxisd(roll,Eigen::Vector3d::UnitX()));
+    Eigen::AngleAxisd Ry(Eigen::AngleAxisd(pitch,Eigen::Vector3d::UnitY()));
+    Eigen::AngleAxisd Rz(Eigen::AngleAxisd(yaw,Eigen::Vector3d::UnitZ()));  
     rotation = Rz * Ry * Rx;
     return rotation;
   }
