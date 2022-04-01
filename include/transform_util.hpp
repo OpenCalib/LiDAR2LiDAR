@@ -68,7 +68,7 @@ public:
   /* avoid using it: matrix.block<3, 3>(0, 0).eulerAngles(0, 1, 2)[0];*/
   static double GetRoll(const Eigen::Matrix4d &matrix) {
     Eigen::Matrix3d R = matrix.block<3, 3>(0, 0);
-    double y = atan2(n(1,0), n(0,0));
+    double y = atan2(R(1,0), R(0,0));
     double r =
         atan2(R(0,1) * sin(y) - R(1,1) * cos(y), -R(0,2) * sin(y) + R(1,2) * cos(y));
     return r;
@@ -85,19 +85,6 @@ public:
     double y = atan2(R(1,0), R(0,0));
 
     return y;
-  }
-
-  static void QV2Matrix(const Eigen::Quaterniond &quat,
-                        const Eigen::Vector3d &vect, Eigen::Matrix4d *mat) {
-    *mat = Eigen::Matrix4d::Identity();
-    mat->block<3, 3>(0, 0) = quat.matrix();
-    mat->block<3, 1>(0, 3) = vect;
-  }
-  static void Matrix2QV(const Eigen::Matrix4d &mat, Eigen::Quaterniond *quat,
-                        Eigen::Vector3d *vect) {
-    *quat = Eigen::Quaterniond(mat.block<3, 3>(0, 0));
-    quat->normalize();
-    *vect = mat.block<3, 1>(0, 3);
   }
 };
 
