@@ -1,5 +1,4 @@
 # LiDAR2LiDAR
-# CROON: Automatic Multi-LiDAR Calibration and Refinement Method in Road Scene
 For more calibration codes, please refer to the link <a href="https://github.com/PJLab-ADG/SensorsCalibration" title="SensorsCalibration">SensorsCalibration</a>
 
 
